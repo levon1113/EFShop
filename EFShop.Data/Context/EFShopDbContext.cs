@@ -10,12 +10,15 @@ namespace EFShop.Data.Context
 {
     public class EFShopDbContext:DbContext
     {
+        private const string connectionString = "Data Source=localhost;" +
+                "Initial Catalog=EFShopDB; Integrated Security=true;" +
+                "TrustServerCertificate=True";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=localhost;" +
-                "Initial Catalog=EFShopDB; Integrated Security=true;" +
-                "TrustServerCertificate=True");
-            
+            optionsBuilder.UseSqlServer(connectionString);
+             optionsBuilder
+            .UseLazyLoadingProxies()
+            .UseSqlServer(connectionString);
             base.OnConfiguring(optionsBuilder);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -36,7 +36,7 @@ namespace EFShop.UI
         private void AddBtn_Click(object sender, EventArgs e)
         {
                    
-            if (this.NameBox.Text == "" || this.Shops.SelectedIndex == -1)
+            if (this.NameBox.Text == "" || this.Shops.SelectedItem == null)
             {
                 MessageBox.Show("Input Name!");
             }
@@ -44,11 +44,11 @@ namespace EFShop.UI
             {
                 using (EFShopDbContext context = new EFShopDbContext())
                 {
-                    int i = this.Shops.SelectedIndex + 1;
+                    Shop? shop = this.Shops.SelectedItem as Shop;
                     Product product = new Product()
                     {
                         Name = this.NameBox.Text,
-                        ShopId = i
+                        ShopId = shop.Id
                     };
 
                     context.Products.Add(product);

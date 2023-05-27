@@ -29,20 +29,19 @@ namespace EFShop.UI
 
         private void SortBtn_Click(object sender, EventArgs e)
         {
-            int index = this.comboBox1.SelectedIndex + 1;
-            if (index != -1)
+            if (this.comboBox1.SelectedItem != null)
             {
                 using (EFShopDbContext context = new EFShopDbContext())
                 {
-                    var shop = context.Shops.Find(index);
-                    if (shop != null)
-                        context.Entry(shop).Collection(b => b.Products).Load();
-                    var sortedProducts = shop.Products;
+                    Shop? shop = this.comboBox1.SelectedItem as Shop;
+                    
+                    var sortedProducts = context.Shops.Find(shop.Id).Products;
                     this.listBox1.Items.Clear();
-                    foreach (var item in sortedProducts)
-                    {
-                        this.listBox1.Items.Add(item);
-                    }
+                    if(sortedProducts != null)
+                        foreach (var item in sortedProducts)
+                        {
+                            this.listBox1.Items.Add(item);
+                        }
                 }
 
             }
@@ -117,6 +116,12 @@ namespace EFShop.UI
             }
             
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddShopForm addShopForm = new AddShopForm();
+            addShopForm.ShowDialog();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace EFShop.Data.Entities
         public string Name { get; set; } = "";
         [ForeignKey("Shop")]
         public int? ShopId { get; set; }
-        public Shop Shop { get; set; }
+        public virtual Shop Shop { get; set; }
 
         public override string ToString()
         {
