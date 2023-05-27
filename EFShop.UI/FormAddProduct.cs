@@ -28,7 +28,7 @@ namespace EFShop.UI
                 
                 foreach (var item in shops)
                 {
-                    this.Shops.Items.Add(item.Name);
+                    this.Shops.Items.Add(item);
                 }
             }
         }

@@ -28,11 +28,11 @@ namespace EFShop.UI
                 var shops = context.Shops.ToList();
                 foreach (var item in shops)
                 {
-                    this.comboBox1.Items.Add(item.Name);
+                    this.comboBox1.Items.Add(item);
                 }
             }
-            int i = (int)Product.ShopId;
-            this.comboBox1.SelectedIndex = i-1;
+            this.comboBox1.SelectedIndex = (int)Product.ShopId - 1;
+
         }
 
         private void EditBtn_Click(object sender, EventArgs e)

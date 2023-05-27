@@ -14,5 +14,9 @@ namespace EFShop.Data.Entities
         [Required]
         public string Name { get; set; } = "";
         public List<Product> Products { get; set; } = new List<Product>();
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

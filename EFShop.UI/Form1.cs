@@ -1,5 +1,6 @@
 using EFShop.Data.Context;
 using EFShop.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFShop.UI
 {
@@ -33,14 +34,15 @@ namespace EFShop.UI
             {
                 using (EFShopDbContext context = new EFShopDbContext())
                 {
-                    var sortedProducts = context.Products.Where(b => b.ShopId == index);
-                    this.listBox1.Items.Clear();
-                    Shop? shop = context.Shops.Where(b => b.Id == index).FirstOrDefault();
+                    var shop = context.Shops.Find(index);
                     if (shop != null)
-                        foreach (var item in sortedProducts)
-                        {
-                            this.listBox1.Items.Add($"{item.Name}: {shop.Name}");
-                        }
+                        context.Entry(shop).Collection(b => b.Products).Load();
+                    var sortedProducts = shop.Products;
+                    this.listBox1.Items.Clear();
+                    foreach (var item in sortedProducts)
+                    {
+                        this.listBox1.Items.Add(item);
+                    }
                 }
 
             }
@@ -53,21 +55,16 @@ namespace EFShop.UI
             this.comboBox1.Items.Clear();
             using (EFShopDbContext db = new EFShopDbContext())
             {
-                var products = db.Products.ToList();
+                var products = db.Products.Include(b => b.Shop);
                 foreach (var item in products)
                 {
-                    Shop? shop = db.Shops.Where(b => b.Id == item.ShopId).FirstOrDefault() as Shop;
-                    if (shop != null)
-                        this.listBox1.Items.Add($"{item.Name}: {shop.Name}");
-                    else
-                        this.listBox1.Items.Add($"{item.Name}: X");
-
+                    this.listBox1.Items.Add(item);
                 }
 
                 var shops = db.Shops.ToList();
                 foreach (var item in shops)
                 {
-                    this.comboBox1.Items.Add(item.Name);
+                    this.comboBox1.Items.Add(item);
                 }
             }
         }
@@ -86,10 +83,11 @@ namespace EFShop.UI
             }
             else
             {
-                string name = this.listBox1.SelectedItem.ToString().Split(":")[0].Trim();
+                var prod = this.listBox1.SelectedItem as Product;
+                
                 using (EFShopDbContext context = new EFShopDbContext())
                 {
-                    Product? product = context.Products.Where(b => b.Name == name).FirstOrDefault();
+                    Product? product = context.Products.Find(prod?.Id);
                     if (product != null)
                         context.Products.Remove(product);
                     context.SaveChanges();
@@ -107,10 +105,10 @@ namespace EFShop.UI
             else
             {
                 UpdateForm updateForm = new UpdateForm();
-                string name = this.listBox1.SelectedItem.ToString().Split(":")[0].Trim();
+                var prod = this.listBox1.SelectedItem as Product;
                 using (EFShopDbContext context = new EFShopDbContext())
                 {
-                    Product? product = context.Products.Where(b => b.Name == name).FirstOrDefault();
+                    Product? product = context.Products.Find(prod?.Id);
                     if (product != null)
                         updateForm.Product = product;
                 }
