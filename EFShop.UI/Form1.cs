@@ -99,6 +99,7 @@ namespace EFShop.UI
         private void AddShopBtn_Click(object sender, EventArgs e)
         {
             AddShopForm addShopForm = new AddShopForm();
+            addShopForm.FormClosed += MyFormClosed;
             addShopForm.ShowDialog();
         }
         public void UpdateList()
