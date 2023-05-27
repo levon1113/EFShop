@@ -25,13 +25,15 @@ namespace EFShop.UI
             this.NameBox.Text = Product.Name;
             using (EFShopDbContext context = new EFShopDbContext())
             {
+                var prod = context.Products.Find(Product.Id);
                 var shops = context.Shops.ToList();
                 foreach (var item in shops)
                 {
                     this.comboBox1.Items.Add(item);
                 }
+                this.comboBox1.SelectedItem = prod?.Shop;
+
             }
-            this.comboBox1.SelectedIndex = (int)Product.ShopId - 1;
 
         }
 
@@ -40,9 +42,10 @@ namespace EFShop.UI
             
             using (EFShopDbContext context = new EFShopDbContext())
             {
-                var p = context.Products.Where(b => b.Name == Product.Name).FirstOrDefault();
+                var p = context.Products.Find(Product.Id);
                 p.Name = this.NameBox.Text;
-                p.ShopId = this.comboBox1.SelectedIndex + 1;
+                var shop = this.comboBox1.SelectedItem as Shop;
+                p.ShopId = shop.Id;
                 context.SaveChanges();
             }
             this.Close();

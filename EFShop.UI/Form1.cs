@@ -19,12 +19,9 @@ namespace EFShop.UI
 
         private void AddProduct_Click(object sender, EventArgs e)
         {
-            formAdd.ShowDialog();
             formAdd.FormClosed += MyFormClosed;
-        }
-        private void MyFormClosed(object sender, FormClosedEventArgs e)
-        {
-            UpdateList();
+
+            formAdd.ShowDialog();
         }
 
         private void SortBtn_Click(object sender, EventArgs e)
@@ -35,7 +32,7 @@ namespace EFShop.UI
                 {
                     Shop? shop = this.comboBox1.SelectedItem as Shop;
                     
-                    var sortedProducts = context.Shops.Find(shop.Id).Products;
+                    var sortedProducts = context.Shops.Find(shop?.Id)?.Products;
                     this.listBox1.Items.Clear();
                     if(sortedProducts != null)
                         foreach (var item in sortedProducts)
@@ -46,26 +43,6 @@ namespace EFShop.UI
 
             }
             
-        }
-
-        public void UpdateList()
-        {
-            this.listBox1.Items.Clear();
-            this.comboBox1.Items.Clear();
-            using (EFShopDbContext db = new EFShopDbContext())
-            {
-                var products = db.Products.Include(b => b.Shop);
-                foreach (var item in products)
-                {
-                    this.listBox1.Items.Add(item);
-                }
-
-                var shops = db.Shops.ToList();
-                foreach (var item in shops)
-                {
-                    this.comboBox1.Items.Add(item);
-                }
-            }
         }
 
         private void ResetBtn_Click(object sender, EventArgs e)
@@ -111,17 +88,46 @@ namespace EFShop.UI
                     if (product != null)
                         updateForm.Product = product;
                 }
-                updateForm.ShowDialog();
                 updateForm.FormClosed += MyFormClosed;
+
+                updateForm.ShowDialog();
             }
             
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddShopBtn_Click(object sender, EventArgs e)
         {
             AddShopForm addShopForm = new AddShopForm();
             addShopForm.ShowDialog();
+        }
+        public void UpdateList()
+        {
+            this.listBox1.Items.Clear();
+            this.comboBox1.Items.Clear();
+            using (EFShopDbContext db = new EFShopDbContext())
+            {
+                var products = db.Products.Include(b => b.Shop);
+                foreach (var item in products)
+                {
+                    this.listBox1.Items.Add(item);
+                }
+
+                var shops = db.Shops.ToList();
+                foreach (var item in shops)
+                {
+                    this.comboBox1.Items.Add(item);
+                }
+            }
+        }
+        private void MyFormClosed(object sender, FormClosedEventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

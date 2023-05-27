@@ -41,19 +41,20 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
+            this.listBox1.ItemHeight = 32;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(235, 364);
+            this.listBox1.Size = new System.Drawing.Size(433, 772);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // AddProduct
             // 
-            this.AddProduct.Location = new System.Drawing.Point(253, 15);
-            this.AddProduct.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.AddProduct.Location = new System.Drawing.Point(470, 32);
+            this.AddProduct.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.AddProduct.Name = "AddProduct";
-            this.AddProduct.Size = new System.Drawing.Size(131, 22);
+            this.AddProduct.Size = new System.Drawing.Size(243, 47);
             this.AddProduct.TabIndex = 1;
             this.AddProduct.Text = "Add Product";
             this.AddProduct.UseVisualStyleBackColor = true;
@@ -61,10 +62,10 @@
             // 
             // EditProduct
             // 
-            this.EditProduct.Location = new System.Drawing.Point(253, 78);
-            this.EditProduct.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.EditProduct.Location = new System.Drawing.Point(470, 166);
+            this.EditProduct.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.EditProduct.Name = "EditProduct";
-            this.EditProduct.Size = new System.Drawing.Size(131, 22);
+            this.EditProduct.Size = new System.Drawing.Size(243, 47);
             this.EditProduct.TabIndex = 2;
             this.EditProduct.Text = "Edit Product";
             this.EditProduct.UseVisualStyleBackColor = true;
@@ -72,10 +73,10 @@
             // 
             // RemoveProduct
             // 
-            this.RemoveProduct.Location = new System.Drawing.Point(253, 111);
-            this.RemoveProduct.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.RemoveProduct.Location = new System.Drawing.Point(470, 237);
+            this.RemoveProduct.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.RemoveProduct.Name = "RemoveProduct";
-            this.RemoveProduct.Size = new System.Drawing.Size(131, 22);
+            this.RemoveProduct.Size = new System.Drawing.Size(243, 47);
             this.RemoveProduct.TabIndex = 3;
             this.RemoveProduct.Text = "Remove Product";
             this.RemoveProduct.UseVisualStyleBackColor = true;
@@ -85,18 +86,18 @@
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(253, 147);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.comboBox1.Location = new System.Drawing.Point(470, 314);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(132, 23);
+            this.comboBox1.Size = new System.Drawing.Size(242, 40);
             this.comboBox1.TabIndex = 4;
             // 
             // SortBtn
             // 
-            this.SortBtn.Location = new System.Drawing.Point(253, 178);
-            this.SortBtn.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.SortBtn.Location = new System.Drawing.Point(470, 380);
+            this.SortBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.SortBtn.Name = "SortBtn";
-            this.SortBtn.Size = new System.Drawing.Size(130, 22);
+            this.SortBtn.Size = new System.Drawing.Size(241, 47);
             this.SortBtn.TabIndex = 5;
             this.SortBtn.Text = "Sort";
             this.SortBtn.UseVisualStyleBackColor = true;
@@ -104,10 +105,10 @@
             // 
             // ResetBtn
             // 
-            this.ResetBtn.Location = new System.Drawing.Point(253, 211);
-            this.ResetBtn.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.ResetBtn.Location = new System.Drawing.Point(470, 450);
+            this.ResetBtn.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(131, 22);
+            this.ResetBtn.Size = new System.Drawing.Size(243, 47);
             this.ResetBtn.TabIndex = 6;
             this.ResetBtn.Text = "Reset";
             this.ResetBtn.UseVisualStyleBackColor = true;
@@ -115,19 +116,20 @@
             // 
             // AddShopBtn
             // 
-            this.AddShopBtn.Location = new System.Drawing.Point(253, 41);
+            this.AddShopBtn.Location = new System.Drawing.Point(470, 87);
+            this.AddShopBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.AddShopBtn.Name = "AddShopBtn";
-            this.AddShopBtn.Size = new System.Drawing.Size(130, 23);
+            this.AddShopBtn.Size = new System.Drawing.Size(241, 49);
             this.AddShopBtn.TabIndex = 7;
             this.AddShopBtn.Text = "Add Shop";
             this.AddShopBtn.UseVisualStyleBackColor = true;
-            this.AddShopBtn.Click += new System.EventHandler(this.button1_Click);
+            this.AddShopBtn.Click += new System.EventHandler(this.AddShopBtn_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 366);
+            this.ClientSize = new System.Drawing.Size(747, 781);
             this.Controls.Add(this.AddShopBtn);
             this.Controls.Add(this.ResetBtn);
             this.Controls.Add(this.SortBtn);
@@ -136,6 +138,7 @@
             this.Controls.Add(this.EditProduct);
             this.Controls.Add(this.AddProduct);
             this.Controls.Add(this.listBox1);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
